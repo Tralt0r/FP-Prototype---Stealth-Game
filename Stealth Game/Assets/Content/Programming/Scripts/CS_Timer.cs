@@ -82,4 +82,14 @@ public class CS_Timer : MonoBehaviour
 
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
+    
+    #region
+
+    // If we need another script to look at the time
+    public float GetElapsedTime()
+    {
+        return currentTime;
+    }
+
+    #endregion
 }
