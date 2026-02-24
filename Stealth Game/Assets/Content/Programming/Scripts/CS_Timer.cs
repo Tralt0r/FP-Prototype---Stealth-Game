@@ -20,7 +20,6 @@ public class CS_Timer : MonoBehaviour
 
     void Start()
     {
-        // If timerText is not assigned, try to find one in children
         if (timerText == null)
         {
             timerText = GetComponentInChildren<TextMeshProUGUI>();
@@ -81,7 +80,6 @@ public class CS_Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
 
-        // Display MM:SS format
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
 }

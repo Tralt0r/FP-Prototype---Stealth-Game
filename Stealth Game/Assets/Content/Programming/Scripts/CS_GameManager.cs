@@ -38,4 +38,16 @@ public class CS_GameManager : MonoBehaviour
             Debug.Log("Game Won");
         }
     }
+
+    public void TriggeredEvent()
+    {
+        if (gameState.isGameloss || gameState.isGameWon)
+        {
+            
+        }
+        else
+        {
+            Debug.Log("Triggered Event");
+        }
+    }
 }

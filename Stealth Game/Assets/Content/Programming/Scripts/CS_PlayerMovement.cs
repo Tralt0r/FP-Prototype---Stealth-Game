@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Needed for UI
 
 [RequireComponent(typeof(CharacterController))]
 public class CS_PlayerMovement : MonoBehaviour
@@ -14,6 +15,13 @@ public class CS_PlayerMovement : MonoBehaviour
     public float airControl = 0.7f;
     public float groundFriction = 8f;
 
+    [Header("Stamina")]
+    public float maxStamina = 5f;
+    public float staminaDrainRate = 1f;
+    public float staminaRegenRate = 0.5f;
+    public Slider staminaSlider;
+
+    private float currentStamina;
     private Vector3 currentVelocity;
 
     [Header("Parkour")]
@@ -23,6 +31,9 @@ public class CS_PlayerMovement : MonoBehaviour
     [Header("Wall Jump Settings")]
     public int maxWallJumps = 3;
     private int wallJumpCount = 0;
+
+    [Header("Wall Layers")]
+    public LayerMask wallLayer;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -48,6 +59,10 @@ public class CS_PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        currentStamina = maxStamina;
+        if (staminaSlider != null)
+            staminaSlider.maxValue = maxStamina;
     }
 
     void Update()
@@ -63,6 +78,7 @@ public class CS_PlayerMovement : MonoBehaviour
             HandleMouseLook();
             HandleMovement();
             HandleJump();
+            HandleStamina();
         }
     }
 
@@ -72,30 +88,24 @@ public class CS_PlayerMovement : MonoBehaviour
 
         // Apply gravity
         if (isGrounded && velocity.y < 0f)
-            velocity.y = -2f; // keep grounded
+            velocity.y = -2f;
         else
             velocity.y += gravity * Time.deltaTime;
 
-        // Reset wall jumps on landing
         if (isGrounded && !wasGrounded)
             wallJumpCount = 0;
         wasGrounded = isGrounded;
 
-        // Input
-        float x = Input.GetAxisRaw("Horizontal"); // Use GetAxisRaw for instant input
+        float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
         Vector3 inputDir = (cameraTransform.right * x + cameraTransform.forward * z);
         inputDir.y = 0f;
+        if (inputDir.sqrMagnitude > 0f) inputDir.Normalize();
 
-        // Snap to normalized direction
-        if (inputDir.sqrMagnitude > 0f)
-            inputDir.Normalize();
-
-        float targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
-
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0f;
+        float targetSpeed = isSprinting ? sprintSpeed : moveSpeed;
         Vector3 horizontalVelocity = inputDir * targetSpeed;
 
-        // Prevent sticking to walls in air
         if (!isGrounded && horizontalVelocity.sqrMagnitude > 0.01f)
         {
             RaycastHit hit;
@@ -105,10 +115,7 @@ public class CS_PlayerMovement : MonoBehaviour
             }
         }
 
-        // Apply horizontal + vertical velocity
         currentVelocity = new Vector3(horizontalVelocity.x, velocity.y, horizontalVelocity.z);
-
-        // Move the character
         controller.Move(currentVelocity * Time.deltaTime);
     }
 
@@ -122,19 +129,15 @@ public class CS_PlayerMovement : MonoBehaviour
             }
             else
             {
-                // Wall jump
-                Vector3 rayOrigin = transform.position + Vector3.up * 1f; // ray from chest height
+                Vector3 rayOrigin = transform.position + Vector3.up * 1f;
                 RaycastHit hit;
-                if ((Physics.Raycast(rayOrigin, transform.right, out hit, wallCheckDistance) ||
-                     Physics.Raycast(rayOrigin, -transform.right, out hit, wallCheckDistance)) &&
+                if ((Physics.Raycast(rayOrigin, transform.right, out hit, wallCheckDistance, wallLayer) ||
+                     Physics.Raycast(rayOrigin, -transform.right, out hit, wallCheckDistance, wallLayer)) &&
                      wallJumpCount < maxWallJumps)
                 {
                     Vector3 jumpDir = (hit.normal + Vector3.up).normalized;
-
-                    // Apply horizontal push without sticking
                     currentVelocity = new Vector3(jumpDir.x, 0, jumpDir.z) * wallJumpForce;
                     velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-
                     wallJumpCount++;
                 }
             }
@@ -154,5 +157,24 @@ public class CS_PlayerMovement : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * currentMouseX * Time.deltaTime);
+    }
+
+    void HandleStamina()
+    {
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && currentStamina > 0f;
+
+        if (isSprinting)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            if (currentStamina < 0f) currentStamina = 0f;
+        }
+        else
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            if (currentStamina > maxStamina) currentStamina = maxStamina;
+        }
+
+        if (staminaSlider != null)
+            staminaSlider.value = currentStamina;
     }
 }
