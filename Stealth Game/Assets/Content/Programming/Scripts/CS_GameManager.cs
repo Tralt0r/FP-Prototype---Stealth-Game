@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CS_GameManager : MonoBehaviour
 {
@@ -12,7 +14,11 @@ public class CS_GameManager : MonoBehaviour
         public bool isGameWon = false;
     }
     private GameState gameState = new GameState();
-    
+
+    // For Win and Lose Screens
+    [SerializeField] private GameObject WinText;
+    [SerializeField] private GameObject LoseText;
+
     public void GameLoss()
     {
         if (gameState.isGameWon)
@@ -23,6 +29,8 @@ public class CS_GameManager : MonoBehaviour
         {
             gameState.isGameloss = true;
             Debug.Log("Game Lost");
+            LoseText.SetActive(true);
+            FreezeGame();
         }
     }
 
@@ -36,6 +44,8 @@ public class CS_GameManager : MonoBehaviour
         {
             gameState.isGameWon = true;
             Debug.Log("Game Won");
+            WinText.SetActive(true);
+            FreezeGame();
         }
     }
 
@@ -49,5 +59,22 @@ public class CS_GameManager : MonoBehaviour
         {
             Debug.Log("Triggered Event");
         }
+    }
+
+    // For stopping the game when you win or lose, unlock cursor.
+    private void FreezeGame()
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    // Unfreezes and restarts game when button is pressed.
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
