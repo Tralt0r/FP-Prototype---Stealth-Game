@@ -84,7 +84,16 @@ public class CS_PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
-        isGrounded = controller.isGrounded;
+        RaycastHit hit;
+        isGrounded = Physics.SphereCast(
+            transform.position,
+            controller.radius,
+            Vector3.down,
+            out hit,
+            controller.height / 2f + 0.1f,
+            ~0,
+            QueryTriggerInteraction.Ignore
+        );
 
         // Apply gravity
         if (isGrounded && velocity.y < 0f)
@@ -108,8 +117,14 @@ public class CS_PlayerMovement : MonoBehaviour
 
         if (!isGrounded && horizontalVelocity.sqrMagnitude > 0.01f)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up * 0.5f, horizontalVelocity.normalized, out hit, 0.6f))
+            if (Physics.Raycast(
+                transform.position + Vector3.up * 0.5f,
+                horizontalVelocity.normalized,
+                out hit,
+                0.6f,
+                ~0,
+                QueryTriggerInteraction.Ignore
+            ))
             {
                 horizontalVelocity = Vector3.ProjectOnPlane(horizontalVelocity, hit.normal);
             }
