@@ -8,7 +8,7 @@ public class CS_Timer : MonoBehaviour
 {
     [Header("Timer Settings")]
     public float startTime = 10f;
-    private float currentTime;
+    public float currentTime;
     private bool isRunning = false;
 
     [Header("UI")]
@@ -83,6 +83,7 @@ public class CS_Timer : MonoBehaviour
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
     
+    // For showing other scripts the time
     #region
 
     // If we need another script to look at the time
