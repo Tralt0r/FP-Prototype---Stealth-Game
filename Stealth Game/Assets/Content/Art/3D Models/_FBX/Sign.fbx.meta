@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 73d1f779fde2c6b4382c977810bd707e
+guid: 2a7ac95b3548d6b419dd272b830f3ced
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tile Floor
-    second: {fileID: 2100000, guid: 0b183ab64c048c244bd7dd83d76f8440, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
