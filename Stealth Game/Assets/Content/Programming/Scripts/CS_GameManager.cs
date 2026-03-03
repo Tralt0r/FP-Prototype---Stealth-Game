@@ -18,6 +18,9 @@ public class CS_GameManager : MonoBehaviour
     // For Win and Lose Screens
     [SerializeField] private GameObject WinText;
     [SerializeField] private GameObject LoseText;
+    [SerializeField] private GameObject InteractText;
+    [SerializeField] private GameObject TimeText;
+    [SerializeField] private GameObject StaminaText;
 
     public void GameLoss()
     {
@@ -30,6 +33,9 @@ public class CS_GameManager : MonoBehaviour
             gameState.isGameloss = true;
             Debug.Log("Game Lost");
             LoseText.SetActive(true);
+            InteractText.SetActive(false);
+            TimeText.SetActive(false);
+            StaminaText.SetActive(false);
             FreezeGame();
         }
     }
@@ -45,6 +51,9 @@ public class CS_GameManager : MonoBehaviour
             gameState.isGameWon = true;
             Debug.Log("Game Won");
             WinText.SetActive(true);
+            InteractText.SetActive(false);
+            TimeText.SetActive(false);
+            StaminaText.SetActive(false);
             FreezeGame();
         }
     }
