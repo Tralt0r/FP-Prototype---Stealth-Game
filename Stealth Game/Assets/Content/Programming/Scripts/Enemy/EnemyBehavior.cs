@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,16 +10,11 @@ public class EnemyBehavior : MonoBehaviour
 
     // Booleans
     private bool IsAwake = false;
-    private bool IsAggro = false;
 
     // Floats
     public float MoveSpeed = 3f;
     [SerializeField] private float ViewDistance = 10f;
     [SerializeField] private float ViewAngle = 60f;
-
-    // Patrol
-    [SerializeField] private Transform[] PatrolPoints;
-    private int CurrentPatrolIndex = 0;
 
     // GameObjects
     private GameObject Player;
@@ -40,15 +34,10 @@ public class EnemyBehavior : MonoBehaviour
     // Start - Find Player GameObject
     #region
 
+    // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
-        NavAgent.speed = MoveSpeed;
-
-        if (PatrolPoints.Length > 0)
-        {
-            NavAgent.SetDestination(PatrolPoints[CurrentPatrolIndex].position);
-        }
     }
 
     #endregion
@@ -57,24 +46,15 @@ public class EnemyBehavior : MonoBehaviour
     // Update - Move towards the Player, and get faster when the time runs out
     #region
 
+    // Update is called once per frame
     void Update()
     {
-        if (IsAggro)
-        {
-            ChasePlayer();
-        }
         CheckLineOfSight();
-
         if (IsAwake)
         {
             NavAgent.SetDestination(Player.transform.position);
+            GoAggro();
         }
-        else
-        {
-            HandlePatrol();
-        }
-
-        GoAggro();
     }
 
     #endregion
@@ -117,48 +97,22 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 DirectionToPlayer = (Player.transform.position - transform.position).normalized;
         float DistanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
 
+        // Check distance
         if (DistanceToPlayer <= ViewDistance)
         {
+            // Check angle
             float Angle = Vector3.Angle(transform.forward, DirectionToPlayer);
 
             if (Angle < ViewAngle / 2f)
             {
+                // Raycast to check if something blocks view
                 if (!Physics.Raycast(transform.position, DirectionToPlayer, DistanceToPlayer, ObstacleMask))
                 {
                     IsAwake = true;
-                    return;
                 }
             }
-        }
-
-        if (DistanceToPlayer > ViewDistance * 1.5f)
-        {
-            IsAwake = false;
         }
     }
 
     #endregion
-
-    private void HandlePatrol()
-    {
-        if (PatrolPoints.Length == 0) return;
-
-        if (!NavAgent.pathPending && NavAgent.remainingDistance < 0.5f)
-        {
-            CurrentPatrolIndex++;
-            if (CurrentPatrolIndex >= PatrolPoints.Length)
-            {
-                CurrentPatrolIndex = 0;
-            }
-
-            NavAgent.SetDestination(PatrolPoints[CurrentPatrolIndex].position);
-        }
-    }
-
-    public void ChasePlayer()
-    {
-        IsAwake = true;
-        IsAggro = true;
-        ViewDistance = 100f;
-    }
 }

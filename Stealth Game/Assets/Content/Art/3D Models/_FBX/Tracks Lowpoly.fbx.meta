@@ -3,22 +3,7 @@ guid: 5e60410937c31114185fc95b8db1dda1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SteelBeam
-    second: {fileID: 2100000, guid: 0a3d62206995ece4e9af7ef824b0337d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SteelTracks
-    second: {fileID: 2100000, guid: af8bb7e1b048dd34d9d06d5e2720571c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TrainTracksMain
-    second: {fileID: 2100000, guid: 0040ac1fbcac4af4291ba8a3fe8d4c82, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
