@@ -173,7 +173,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cameraTransform: {fileID: 1201467056697456250}
-  mouseSensitivity: 500
+  mouseSensitivity: 50
   playerBody: {fileID: 5103464892249072481}
   rotationSmoothTime: 0.02
 --- !u!143 &5052627379850077774

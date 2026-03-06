@@ -73,7 +73,6 @@ public class CS_GameManager : MonoBehaviour
     // For stopping the game when you win or lose, unlock cursor.
     private void FreezeGame()
     {
-        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
