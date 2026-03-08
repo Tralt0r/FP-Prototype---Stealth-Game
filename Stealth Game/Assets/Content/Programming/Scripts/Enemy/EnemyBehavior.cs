@@ -34,6 +34,7 @@ public class EnemyBehavior : MonoBehaviour
     // Script Reference
     [SerializeField] private CS_Timer TimerReference;
     [SerializeField] private CS_GameManager GameManager;
+    [SerializeField] private Animator EnemyAnimator;
 
     #endregion
 
@@ -44,6 +45,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         NavAgent.speed = MoveSpeed;
+
+        EnemyAnimator = GetComponent<Animator>();
 
         if (PatrolPoints.Length > 0)
         {
@@ -75,6 +78,8 @@ public class EnemyBehavior : MonoBehaviour
         }
 
         GoAggro();
+        float speed = NavAgent.velocity.magnitude / NavAgent.speed;
+        EnemyAnimator.SetFloat("Speed?", speed);
     }
 
     #endregion
