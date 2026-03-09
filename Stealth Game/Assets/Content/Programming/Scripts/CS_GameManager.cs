@@ -22,6 +22,9 @@ public class CS_GameManager : MonoBehaviour
     [SerializeField] private GameObject TimeText;
     [SerializeField] private GameObject StaminaText;
 
+    // To Restart Game
+    public UIManager UIManage;
+
     public void GameLoss()
     {
         if (gameState.isGameWon)
@@ -81,8 +84,7 @@ public class CS_GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        UIManager.RestartGame = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }
