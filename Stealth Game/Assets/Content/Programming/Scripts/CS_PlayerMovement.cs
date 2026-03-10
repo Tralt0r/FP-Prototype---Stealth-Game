@@ -80,8 +80,6 @@ public class CS_PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
 
         currentStamina = maxStamina;
         if (staminaSlider != null)
