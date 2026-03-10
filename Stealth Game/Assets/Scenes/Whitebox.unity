@@ -761,6 +761,18 @@ PrefabInstance:
       propertyPath: enableRandomWander
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4573693765667335918, guid: 5cbbe0f39d6056642800ed7268d1fbde, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
+    - target: {fileID: 5039554382176766566, guid: 5cbbe0f39d6056642800ed7268d1fbde, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
+    - target: {fileID: 6446239867530686215, guid: 5cbbe0f39d6056642800ed7268d1fbde, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
     - target: {fileID: 7431262143893444303, guid: 5cbbe0f39d6056642800ed7268d1fbde, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39.103436
@@ -5829,6 +5841,22 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1943164695899230653, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87eb6716123b8cc438f44b531785f05f, type: 2}
+    - target: {fileID: 3937736241074490465, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87eb6716123b8cc438f44b531785f05f, type: 2}
+    - target: {fileID: 4573693765667335918, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87eb6716123b8cc438f44b531785f05f, type: 2}
+    - target: {fileID: 5039554382176766566, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87eb6716123b8cc438f44b531785f05f, type: 2}
     - target: {fileID: 6007661939179399556, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
       propertyPath: MoveSpeed
       value: 4
@@ -5849,6 +5877,10 @@ PrefabInstance:
       propertyPath: PatrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1137805573}
+    - target: {fileID: 6446239867530686215, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87eb6716123b8cc438f44b531785f05f, type: 2}
     - target: {fileID: 7431262143893444303, guid: 36e90dc2ee0f4d246876a2cee8f4d50d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.284157
