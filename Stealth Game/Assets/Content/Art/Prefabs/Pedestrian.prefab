@@ -205,10 +205,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3699015304206882500, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
+    - target: {fileID: -3445315086518088611, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
     - target: {fileID: 919132149155446097, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
       propertyPath: m_Name
       value: AnimsGuard
       objectReference: {fileID: 0}
+    - target: {fileID: 1418049842479657703, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
     - target: {fileID: 2223639932434330405, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
       propertyPath: m_WrapMode
       value: 2
@@ -217,6 +229,14 @@ PrefabInstance:
       propertyPath: m_Animation
       value: 
       objectReference: {fileID: 7816714866970726651, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+    - target: {fileID: 3901079418829671860, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
+    - target: {fileID: 4611627816747167547, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10dfc7cf824a1e8428b6733553969e5e, type: 2}
     - target: {fileID: 5866666021909216657, guid: e3a1d3754d1bf424b9f1ee7e65cbb686, type: 3}
       propertyPath: m_Controller
       value: 
