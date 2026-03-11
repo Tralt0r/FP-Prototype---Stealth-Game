@@ -1,6 +1,8 @@
 # FP-Prototype---Stealth-Game
 Repository focusing on our stealth game for project 2.
 
+---
+
 Controls:
 
 For Keyboard and Mouse
@@ -19,7 +21,7 @@ Move Mouse - Look Around
 
 Esc - Pause
 
-
+---
 
 For Controllers
 
@@ -35,7 +37,7 @@ Right Stick - Look Around
 
 Start - Pause
 
-
+---
 
 Savanna Stephens - Level Designer, Producer, and 2D Artist
 
@@ -53,6 +55,7 @@ Background Ambiance - AMBIANCE-MEDIUM SIZED ROOM-LOTS OF PEOPLE.wav by Scott_Sna
 
 FAST BLAZE FONT- Figuree Studio
 
+---
 
 GitHub Link:https://github.com/Tralt0r/FP-Prototype---Stealth-Game
 
